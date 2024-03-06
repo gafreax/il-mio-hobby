@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Titolo from './components/Titolo.jsx'
+import Utente from './components/Utente.jsx'
+import Ospite from './components/Ospite.jsx'
 
-function App() {
+import './App.css'
+
+function App () {
+  const utente = localStorage.getItem('utente')
+  let UserComponent
+  if (utente === 'ospite') {
+    UserComponent = <Ospite />
+  } else {
+    UserComponent = <Utente nome={utente} />
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='page'>
+      <Titolo>il mio Hobby</Titolo>
+      {UserComponent}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

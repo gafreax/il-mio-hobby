@@ -1,23 +1,27 @@
+import Sviluppo from './components/Sviluppo.jsx'
 import Titolo from './components/Titolo.jsx'
-import Utente from './components/Utente.jsx'
-import Ospite from './components/Ospite.jsx'
+import Guest from './Pages/Guest.jsx'
+import Admin from './Pages/Admin.jsx'
 
 import './App.css'
 
+function isOspite(utente) {
+  if (!utente || utente === "ospite") {
+    return true
+  }
+  return false
+}
+
 function App () {
   const utente = localStorage.getItem('utente')
-  let UserComponent
-  if (utente === 'ospite') {
-    UserComponent = <Ospite />
-  } else {
-    UserComponent = <Utente nome={utente} />
-  }
-  return (
-    <div className='page'>
-      <Titolo>il mio Hobby</Titolo>
-      {UserComponent}
-    </div>
-  )
+  const isSviluppo = document.cookie.indexOf("development") >= 0
+  const Page = isOspite(utente) ? <Guest /> : <Admin />
+  return <>
+    <Titolo>il mio Hobby</Titolo>
+    {Page}
+    { isSviluppo && <Sviluppo />}
+  </>
+  
 }
 
 export default App

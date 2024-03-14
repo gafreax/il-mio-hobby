@@ -2,6 +2,7 @@ import Sviluppo from './components/Sviluppo.jsx'
 import Titolo from './components/Titolo.jsx'
 import Guest from './Pages/Guest.jsx'
 import Admin from './Pages/Admin.jsx'
+import Container from './components/Container.jsx'
 
 import './App.css'
 
@@ -16,11 +17,11 @@ function App () {
   const utente = localStorage.getItem('utente')
   const isSviluppo = document.cookie.indexOf("development") >= 0
   const Page = isOspite(utente) ? <Guest /> : <Admin />
-  return <>
+  return <Container>
     <Titolo>il mio Hobby</Titolo>
-    {Page}
+    { Page }
     { isSviluppo && <Sviluppo />}
-  </>
+  </Container>
   
 }
 
